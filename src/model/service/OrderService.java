@@ -4,14 +4,14 @@ import model.entities.Order;
 
 public class OrderService {
 
-   private  ShippingService shippingService;
+   private  Shipping shipping;
 
     public OrderService(ShippingService shippingService) {
-        this.shippingService = shippingService;
+        this.shipping = shippingService;
     }
 
     public double total(Order order){
-               double frete = shippingService.shipping(order);
+               double frete = shipping.shipping(order);
                return order.getBasic() - order.getDiscount() + frete;
     }
 }

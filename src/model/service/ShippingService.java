@@ -2,7 +2,7 @@ package model.service;
 
 import model.entities.Order;
 
-public class ShippingService {
+public class ShippingService implements Shipping{
 
     public Double shipping(Order order) {
         double frete = 0;
