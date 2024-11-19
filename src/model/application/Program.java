@@ -2,6 +2,7 @@ package model.application;
 
 import model.entities.Order;
 import model.service.OrderService;
+import model.service.ShippingService;
 
 
 import java.util.Locale;
@@ -13,13 +14,17 @@ public class Program {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
+        System.out.print("Code: ");
         int code = sc.nextInt();
+        System.out.print("Basic value: ");
         double basic = sc.nextDouble();
+        System.out.print("Discount value: ");
         double discount = sc.nextDouble();
 
         Order order = new Order(code,basic, discount);
 
-        double valueTotal = new OrderService().total(order);
+        OrderService orderService = new OrderService(new ShippingService());
+        double valueTotal = orderService.total(order);
 
         System.out.println("Pedido código " + code);
         System.out.println("Valor total: R$ " + String.format("%.2f", valueTotal));
